@@ -70,15 +70,15 @@ if dag_filter == "Alle dagen":
 else:
     st.dataframe(logboek[logboek["Dag"] == dag_filter])
 
-# --- Overzicht nog te doen per week voor beide verdiepingen ---
+# --- Overzicht nog te doen per dag voor beide verdiepingen ---
 st.markdown("---")
-st.subheader("🕓 Wat moet nog afgestoft worden deze week?")
+st.subheader(f"🕓 Wat moet nog afgestoft worden op {dag}?")
 
 col1, col2 = st.columns(2)
 
 with col1:
     st.markdown("### 🏠 Begane grond")
-    logboek_bg = logboek[logboek["Verdieping"] == "Begane grond"]
+    logboek_bg = logboek[(logboek["Verdieping"] == "Begane grond") & (logboek["Dag"] == dag)]
     afgestoft_bg = logboek_bg["Afdeling"].unique().tolist()
     nog_te_doen_bg = [a for a in BEGANE_GROND if a not in afgestoft_bg]
 
@@ -91,11 +91,11 @@ with col1:
 
 with col2:
     st.markdown("### 🛋️ Eerste etage (showroom)")
-    logboek_etage = logboek[logboek["Verdieping"] == "Eerste etage"]
+    logboek_etage = logboek[(logboek["Verdieping"] == "Eerste etage") & (logboek["Dag"] == dag)]
     afgestoft_etage = logboek_etage["Afdeling"].unique().tolist()
 
-    # 'First 5' moet altijd blijven staan in 'nog te doen'
-    nog_te_doen_etage = [a for a in EERSTE_ETAGE if a not in afgestoft_etage or a == "First 5"]
+    # 'First 5' moet dagelijks blijven staan tot het voor die dag gedaan is
+    nog_te_doen_etage = [a for a in EERSTE_ETAGE if a not in afgestoft_etage]
 
     if nog_te_doen_etage:
         st.write("Nog te doen:")
@@ -103,4 +103,5 @@ with col2:
             st.markdown(f"- 🔲 {afdeling}")
     else:
         st.success("🎉 Alles is afgestoft op de eerste etage!")
+
 
