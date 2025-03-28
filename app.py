@@ -10,7 +10,7 @@ DAGEN = ["Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "
 BEGANE_GROND = [
     "Koken en eten", "Woontextiel", "Bedtextiel", "Badkamers", "Opbergen", "Verlichting",
     "Vloerkleden", "Wanddecoratie", "Woondecoratie", "Planten", "Zelfbedieningsmagazijn",
-    "Ingang", "Kassalijn", "SFM (kassa swedish market)"
+    "Ingang", "Kassalijn", "SFM (kassa swedish market)", "Markethall"
 ]
 EERSTE_ETAGE = [
     "First 5", "Woonkamers", "Wandmeubels", "Eetkamers", "Keukens",
@@ -113,5 +113,6 @@ with col2:
             st.markdown(f"- 🔲 {afdeling}")
     else:
         st.success("🎉 Alles is afgestoft op de eerste etage!")
+
 
 
