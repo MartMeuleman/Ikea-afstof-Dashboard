@@ -69,18 +69,34 @@ if dag_filter == "Alle dagen":
 else:
     st.dataframe(logboek[logboek["Dag"] == dag_filter])
 
-# --- Overzicht nog te doen per week ---
+# --- Overzicht nog te doen per week voor beide verdiepingen ---
 st.markdown("---")
 st.subheader("🕓 Wat moet nog afgestoft worden deze week?")
 
-# Filter logboek voor de hele week en gekozen verdieping
-logboek_week = logboek[logboek["Verdieping"] == verdieping]
-afgestoft_week = logboek_week["Afdeling"].unique().tolist()
-nog_te_doen_week = [a for a in afdelingen if a not in afgestoft_week]
+col1, col2 = st.columns(2)
 
-if nog_te_doen_week:
-    st.write(f"Deze afdelingen zijn deze week nog niet afgestoft ({verdieping}):")
-    for afdeling in nog_te_doen_week:
-        st.markdown(f"- 🔲 {afdeling}")
-else:
-    st.success(f"🎉 Alles is afgestoft deze week voor {verdieping}!")
+with col1:
+    st.markdown("### 🏠 Begane grond")
+    logboek_bg = logboek[logboek["Verdieping"] == "Begane grond"]
+    afgestoft_bg = logboek_bg["Afdeling"].unique().tolist()
+    nog_te_doen_bg = [a for a in BEGANE_GROND if a not in afgestoft_bg]
+
+    if nog_te_doen_bg:
+        st.write("Nog te doen:")
+        for afdeling in nog_te_doen_bg:
+            st.markdown(f"- 🔲 {afdeling}")
+    else:
+        st.success("🎉 Alles is afgestoft op de begane grond!")
+
+with col2:
+    st.markdown("### 🛋️ Eerste etage (showroom)")
+    logboek_etage = logboek[logboek["Verdieping"] == "Eerste etage"]
+    afgestoft_etage = logboek_etage["Afdeling"].unique().tolist()
+    nog_te_doen_etage = [a for a in EERSTE_ETAGE if a not in afgestoft_etage]
+
+    if nog_te_doen_etage:
+        st.write("Nog te doen:")
+        for afdeling in nog_te_doen_etage:
+            st.markdown(f"- 🔲 {afdeling}")
+    else:
+        st.success("🎉 Alles is afgestoft op de eerste etage!")
