@@ -8,12 +8,16 @@ st.set_page_config(page_title="IKEA Afstof Dashboard", layout="wide")
 # --- Instellingen ---
 DAGEN = ["Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag"]
 BEGANE_GROND = [
-    "Koken en eten", "Woontextiel", "Bedtextiel", "Badkamers", "Opbergen", "Verlichting",
-    "Vloerkleden", "Wanddecoratie", "Woondecoratie", "Planten", "Zelfbedieningsmagazijn"
+    "Koken en eten / Приготування їжі", "Woontextiel / Домашній текстиль", "Bedtextiel / Постільна білизна", 
+    "Badkamers / Ванні кімнати", "Opbergen / Зберігання", "Verlichting / Освітлення",
+    "Vloerkleden / Килими", "Wanddecoratie / Настінний декор", "Woondecoratie / Декор для дому", 
+    "Planten / Рослини", "Zelfbedieningsmagazijn / Склад самообслуговування"
 ]
 EERSTE_ETAGE = [
-    "Ingang showroom (first 5)", "Woonkamers", "Wandmeubels", "Eetkamers", "Keukens",
-    "Werkplekken", "Slaapkamers", "Garderobekasten", "IKEA kinderland"
+    "Ingang showroom (first 5) / Вхід у шоурум (перші 5)", "Woonkamers / Вітальні", 
+    "Wandmeubels / Настінні меблі", "Eetkamers / Їдальні", "Keukens / Кухні",
+    "Werkplekken / Робочі місця", "Slaapkamers / Спальні", "Garderobekasten / Шафи для одягу", 
+    "IKEA kinderland / Дитячий відділ IKEA"
 ]
 
 CSV_LOGBOEK = "afstof_logboek.csv"
@@ -100,3 +104,4 @@ with col2:
             st.markdown(f"- 🔲 {afdeling}")
     else:
         st.success("🎉 Alles is afgestoft op de eerste etage!")
+
