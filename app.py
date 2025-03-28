@@ -104,4 +104,3 @@ with col2:
     else:
         st.success("🎉 Alles is afgestoft op de eerste etage!")
 
-
