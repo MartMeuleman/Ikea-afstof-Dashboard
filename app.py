@@ -69,18 +69,18 @@ if dag_filter == "Alle dagen":
 else:
     st.dataframe(logboek[logboek["Dag"] == dag_filter])
 
-# --- Overzicht nog te doen ---
+# --- Overzicht nog te doen per week ---
 st.markdown("---")
-st.subheader("🕓 Wat moet nog afgestoft worden?")
+st.subheader("🕓 Wat moet nog afgestoft worden deze week?")
 
-# Filter logboek voor geselecteerde dag en verdieping
-logboek_filtered = logboek[(logboek["Dag"] == dag) & (logboek["Verdieping"] == verdieping)]
-afgestoft = logboek_filtered["Afdeling"].unique().tolist()
-nog_te_doen = [a for a in afdelingen if a not in afgestoft]
+# Filter logboek voor de hele week en gekozen verdieping
+logboek_week = logboek[logboek["Verdieping"] == verdieping]
+afgestoft_week = logboek_week["Afdeling"].unique().tolist()
+nog_te_doen_week = [a for a in afdelingen if a not in afgestoft_week]
 
-if nog_te_doen:
-    st.write(f"Deze afdelingen zijn nog niet afgestoft op **{dag}** ({verdieping}):")
-    for afdeling in nog_te_doen:
+if nog_te_doen_week:
+    st.write(f"Deze afdelingen zijn deze week nog niet afgestoft ({verdieping}):")
+    for afdeling in nog_te_doen_week:
         st.markdown(f"- 🔲 {afdeling}")
 else:
-    st.success(f"🎉 Alles is afgestoft op {dag} voor {verdieping}!")
+    st.success(f"🎉 Alles is afgestoft deze week voor {verdieping}!")
