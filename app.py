@@ -103,3 +103,4 @@ with col2:
             st.markdown(f"- 🔲 {afdeling}")
     else:
         st.success("🎉 Alles is afgestoft op de eerste etage!")
+
